@@ -217,7 +217,7 @@
     return nil;
 }
 
-// lazy instantiation for a new game
+// lazy instantiation for a new game yes
 // abstract method
 
 - (CardMatchingGame *) game {
