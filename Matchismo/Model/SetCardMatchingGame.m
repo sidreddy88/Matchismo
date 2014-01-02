@@ -65,7 +65,7 @@
     Card *currentCard = [self cardAtIndex:index];
     
     currentCard.Selected  = YES;
-    self.scoreForASetCardGame -= FLIP_COST;
+    self.score -= FLIP_COST;
     theNumberOfSelectedCardsIsThree = NO;
     [cardsToBeCompared addObject:currentCard];
     

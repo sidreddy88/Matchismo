@@ -44,33 +44,6 @@
     
     return nil;
     
-/*
-// the following variables are initialized in the init method.
-    
-    self.score = 0;
-    self.flipCount = 0;
-//    self.numberOfSelectedCards = 0;
-    
-    
-
-    
-    
-    self = [super init];
-    if (self) {
-        for(int i = 0; i < count; i++){
-            Card *card = [deck drawRandomCard];
-            if(!card){
-                self = nil;
-            } else {
-                [ self.cards insertObject:card atIndex:i];
-            }
-        }
-        
-    }
-    
-    return self;
-
-*/
 }
 
 // This method is used in the Update UI method in the controller
@@ -82,6 +55,7 @@
     
     return (index < self.cards.count) ? [self.cards objectAtIndex:index] : nil;
 }
+
 /*
 - (NSString *)description
 {

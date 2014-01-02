@@ -10,7 +10,6 @@
 
 @class Card;
 
-//#import "CardGameViewController.h"
 
 @interface SetCardGameViewController : UIViewController
 

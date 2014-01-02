@@ -11,11 +11,14 @@
 #import "CardMatchingGame.h"
 #import "Card.h"
 
-@interface SetCardMatchingGame : UIViewController
+@interface SetCardMatchingGame : CardMatchingGame
+
 
 - (NSString *) printifEachMatchIsASet;
 
 - (void) selectCardAtIndexForSetGame : (NSUInteger) index;
+
+-(id) initWithCardCount: (NSUInteger)count usingDeck: (Deck *) deck;
 
 // This property is used in the Card Game View Controller to mark the selected cards as unslected once three cards have been selected
 @property (nonatomic) BOOL theNumberOfSelectedCardsIsThree;

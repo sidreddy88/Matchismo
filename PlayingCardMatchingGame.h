@@ -19,7 +19,6 @@
 
 @property (nonatomic, readonly) NSMutableArray *historyOfThePlayingCardMatchingGame;
 
-- (int) matchForTwoCardGame : (NSArray *) cards;
 
 
 @end

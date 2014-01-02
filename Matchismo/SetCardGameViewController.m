@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *resultsOfLastFlip;
+@property (strong,nonatomic) SetCardMatchingGame *game;
 
 
 @end
@@ -27,56 +28,48 @@
 @implementation SetCardGameViewController
 
 @synthesize cardButtons = _cardButtons;
-@synthesize scoreLabel, resultsOfLastFlip, flipsLabel;
+@synthesize scoreLabel, resultsOfLastFlip, flipsLabel, game;
 
-/*
 
-- (CardMatchingGame *) game {
+
+- (SetCardMatchingGame *) game {
     
-    //    if (!game) game = nil;
-    if (!game) game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+   
+    if (!game) game = [[SetCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                         usingDeck:[self createDeck]];
     
     return game;
 }
 
-*/
+
 // setter for the arrray CardButtoms
 
 - (void) setCardButtons:(NSArray *)cardButtons {
-/*
+
     _cardButtons = cardButtons;
     [self updateUI];
- */
+ 
     
 }
 
 
 - (IBAction)dealCards:(UIButton *)sender {
     
-    /*
+    
     
     if (sender.isTouchInside){
         [self resetAllButtons:_cardButtons];
         self.resultsOfLastFlip.text = @"Results of last Flip";
+        self.game = nil;
         
-        if (self.game.isTheCurrentGameAPlayingCardGame) {
-            
-            self.game = nil;
-        } else if (self.setsCardGame.isTheCurrentGameASetCardGame){
-            self.setsCardGame = nil;
-        }
         
         [self updateUI];
         
-        
-        
     }
-     */
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-/*
+
     
     if ([segue.identifier isEqualToString:@"PlayingCard History"]) {
         NSLog(@"%s", __PRETTY_FUNCTION__);
@@ -88,43 +81,30 @@
             
         }
     }
-  */
+  
 }
 
 // This method is used to reset all buttons once the "Deal" button is pressed in the Playing card Game
 - (void) resetAllButtons: (NSArray *)cardButtons {
     
-  /*
+  
     for (UIButton *cardButton in self.cardButtons){
         
-        if (self.playingCardGame.isTheCurrentGameAPlayingCardGame) {
-            Card *card = [self.playingCardGame cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-            
-            if (card.isUnplayable){
-                card.unplayable = NO;
-            }
-            if (card.isFaceUp){
-                card.faceUp = NO;
-            }
-        }    // for the Set Card Matching Game
-        else if (self.setsCardGame.isTheCurrentGameASetCardGame){
-            
-            Card *card = [self.setsCardGame cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+            Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
             
             if (card.isSelected){
                 card.selected = NO;
             }
-        }
-        
-    }
-*/
+
+
+}
 }
 
 - (void) updateUI {
-/*
+
     
     for (UIButton *cardButton in self.cardButtons){
-        Card *card = [self.setsCardGame cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         
         NSAttributedString *mine = [self gettingTheAttributesThatGoOnASetCard: card];
         
@@ -135,12 +115,12 @@
         
         
     }
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score : %d", self.setsCardGame.scoreForASetCardGame];
-    self.resultsOfLastFlip.text =  [NSString stringWithFormat:@"%@", [self.setsCardGame printifEachMatchIsASet]];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score : %d", self.game.score];
+    self.resultsOfLastFlip.text =  [NSString stringWithFormat:@"%@", [self.game printifEachMatchIsASet]];
     
     for (UIButton *cardButton in self.cardButtons){
-        Card *card = [self.setsCardGame cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        if (self.setsCardGame.theNumberOfSelectedCardsIsThree && card.isSelected){
+        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        if (self.game.theNumberOfSelectedCardsIsThree && card.isSelected){
             card.selected = NO;
         }
         
@@ -148,50 +128,27 @@
     }
 }
 
- */
-}
+
+
 
 - (IBAction)flipCard:(UIButton *)sender {
     
-/*
-    
-    // code for a Playing Card Matching Game
-    
-    if (self.playingCardGame.isTheCurrentGameAPlayingCardGame){
-        
-        [self.playingCardGame flipCardAtIndexForTwoPlayerGame:[self.cardButtons indexOfObject:sender]];
-        self.playingCardGame. flipCountForAPlayingCardGame++;
+
+     [self.game selectCardAtIndexForSetGame:[self.cardButtons indexOfObject:sender]];
+        self.game.flipCount++;
         [self updateUI];
         
-        
-        self.flipsLabel.text = [NSString stringWithFormat:@"Flips : %i", self.playingCardGame. flipCountForAPlayingCardGame];
-        
-    }
+        self.flipsLabel.text = [NSString stringWithFormat:@"Flips : %i", game.flipCount];
     
-    // code for a Set Card Matching Game
-    
-    else if (self.setsCardGame.isTheCurrentGameASetCardGame){
-        [self.setsCardGame selectCardAtIndexForSetGame:[self.cardButtons indexOfObject:sender]];
-        self.setsCardGame.flipCountForASetCardGame++;
-        [self updateUI];
-        
-        self.flipsLabel.text = [NSString stringWithFormat:@"Flips : %i", setsCardGame.flipCountForASetCardGame];
-    }
- 
- */
 }
-
-
-
-
 
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.game = [[SetCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                     usingDeck:[self createDeck]];
+//    self.game = [[SetCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+//                                                     usingDeck:[self createDeck]];
 
     NSLog(@"%s - game = %@", __PRETTY_FUNCTION__, self.game);
     NSLog(@"first card = %@", [self.game.cards firstObject]);
@@ -336,16 +293,16 @@
 {
     [super viewWillAppear:YES];
 
-//    self.setsCardGame. isTheCurrentGameASetCardGame  = YES;
-    [super updatingTheUI];
+
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
+    self.game = nil;
 
-    [super settingGameToNil];
-    self.setsCardGame. isTheCurrentGameASetCardGame  = NO;
+    
     
 }
 @end
