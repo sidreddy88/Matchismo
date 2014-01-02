@@ -22,15 +22,14 @@
 @end
 @implementation PlayingCardMatchingGame
 
-@synthesize lastFlipScore,lastFlipWasMatched,itIsAThreeCardGame,itIsATwoCardGame,onlyOneCardHasBeenPicked, cardsToBePrinted, historyOfThePlayingCardGame, isTheCurrentGameAPlayingCardGame, scoreForAPlayingCardGame, flipCountForAPlayingCardGame;
+@synthesize lastFlipScore,lastFlipWasMatched,itIsAThreeCardGame,itIsATwoCardGame,onlyOneCardHasBeenPicked, cardsToBePrinted, historyOfThePlayingCardGame;
 
 -(id) initWithCardCount: (NSUInteger)count usingDeck: (Deck *) deck{
     
-    self.scoreForAPlayingCardGame = 0;
-    self.flipCountForAPlayingCardGame = 0;
+    self.score= 0;
+    self.flipCount = 0;
+    historyOfThePlayingCardGame = [[NSMutableArray alloc]init];
    
-    
-    
     
     self = [super init];
     if (self) {
@@ -44,10 +43,6 @@
         }
         
     }
-    historyOfThePlayingCardGame = [[NSMutableArray alloc]init];
-    isTheCurrentGameAPlayingCardGame = YES;
-    
-    
     
     return self;
     
@@ -116,13 +111,13 @@
                     if(matchScore){
                         otherCard.unplayable = YES;
                         card.unplayable = YES;
-                        self.scoreForAPlayingCardGame += matchScore * MATCH_BONUS;
+                        self.score += matchScore * MATCH_BONUS;
                         lastFlipWasMatched = YES;
                         lastFlipScore = matchScore * MATCH_BONUS;
                         
                     }else {
                         otherCard.faceUp = NO;
-                        self.scoreForAPlayingCardGame -= MISMATCH_PENALTY;
+                        self.score -= MISMATCH_PENALTY;
                         
                         lastFlipWasMatched = NO;
                         lastFlipScore = MISMATCH_PENALTY;
@@ -136,7 +131,7 @@
                 
                 
                 
-            }self.scoreForAPlayingCardGame -= FLIP_COST;
+            }self.score -= FLIP_COST;
             
             
         }
@@ -146,88 +141,6 @@
     
     
 }
-/*
- 
- // This method is for flipping a card in a three player game
- 
- - (void) flipCardAtIndexForThreePlayerGame: (NSUInteger)index{
- 
- lastFlipWasMatched = NO;
- lastFlipScore = nil;
- itIsAThreeCardGame = NO;
- onlyOneCardHasBeenPicked = NO;
- 
- // logic for a 3 card game
- 
- Card *card = [self cardAtIndex:index];
- cardsToBePrinted = [[NSMutableArray alloc]init];
- 
- // This code is used to tell whether there are only one or no cards that are face up. This information is used in the method stringsToBePrinted
- 
- int numberOfFlippedCards = 0;
- for (Card * card in cards){
- if (card.isFaceUp && !card.isUnplayable){
- numberOfFlippedCards ++;
- 
- }
- }
- 
- if (numberOfFlippedCards == 0){
- onlyOneCardHasBeenPicked = YES;
- } else if (numberOfFlippedCards == 1 || numberOfFlippedCards == 2 ){
- itIsAThreeCardGame = YES;
- }
- 
- 
- 
- if (card && !card.isUnplayable){
- if (!card.isFaceUp){
- for (Card *firstCard in self.cards){
- if (firstCard.isFaceUp && !firstCard.isUnplayable){
- for (Card *secondCard in self.cards){
- NSComparisonResult contentsOfCards = [firstCard.contents compare:secondCard.contents];
- 
- if (secondCard.isFaceUp && !secondCard.isUnplayable && contentsOfCards != NSOrderedSame){
- int matchScore = [card matchForThreeCardGame:@[ firstCard, secondCard ]];
- 
- if (matchScore){
- 
- firstCard.unplayable = YES;
- card.unplayable = YES;
- secondCard.unplayable = YES;
- self.score += matchScore * MATCH_BONUS;
- [cardsToBePrinted addObject: card.contents];
- [cardsToBePrinted addObject: secondCard.contents];
- [cardsToBePrinted addObject: firstCard.contents];
- lastFlipWasMatched = YES;
- lastFlipScore = matchScore * MATCH_BONUS;
- 
- } else {
- firstCard.faceUp = NO;
- self.score -= MISMATCH_PENALTY;
- lastFlipWasMatched = NO;
- }
- break;
- }
- }
- // If I want to also score when there are only two cards, i would enter the code here.
- 
- }
- } self.score -= FLIP_COST;
- 
- 
- }
- [cardsToBePrinted addObject: card.contents];
- card.faceUp = !card.isFaceUp;
- 
- 
- 
- }
- 
- }
- 
- */
- 
  // I use this method to print what is happening in the model in the UILabel resultOfLastFlip. I use three properties
  // - lastFlipWasMatched, lastFlipScore and cardsToBePrinted in this method
 

@@ -19,7 +19,8 @@
 @property (nonatomic, strong) NSMutableArray *characteristicsOfTheCards;
 
 -(int) matchForTwoCardGame : (NSArray*) otherCards;
--(int)matchForThreeCardGame:(NSArray *) otherCards;
+
+
 
 - (int) findingOutIfThereIsAMatch : (NSArray *) cards;
 

@@ -29,13 +29,7 @@
 }
 
 
-/*
-// getter for the array cardsToBeComapred
-- (NSMutableArray *) cardsToBeCompared {
-    if (!cardsToBeCompared) cardsToBeCompared = [[NSMutableArray alloc]init];
-    return cardsToBeCompared;
-}
-*/
+
 // setter method for flipCount
 
 - (void) setFlipCount:(int)flipCount {

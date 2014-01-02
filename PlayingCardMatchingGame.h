@@ -16,15 +16,10 @@
 
 - (NSString *) stringToBePrinted;
 
-//- (void) flipCardAtIndexForThreePlayerGame: (NSUInteger)index;
 
 @property (nonatomic, readonly) NSMutableArray *historyOfThePlayingCardMatchingGame;
 
-@property(nonatomic) BOOL isTheCurrentGameAPlayingCardGame;
+- (int) matchForTwoCardGame : (NSArray *) cards;
 
-@property (nonatomic) int scoreForAPlayingCardGame;
-@property (nonatomic) int flipCountForAPlayingCardGame;
-
-- (void) setThePlayingCardToBeNil;
 
 @end

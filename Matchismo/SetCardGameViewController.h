@@ -6,9 +6,13 @@
 //  Copyright (c) 2013 Siddharth Sukumar. All rights reserved.
 //
 
-#import "CardGameViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface SetCardGameViewController : CardGameViewController
+@class Card;
+
+//#import "CardGameViewController.h"
+
+@interface SetCardGameViewController : UIViewController
 
 - (NSAttributedString * ) gettingTheAttributesThatGoOnASetCard: (Card *)card;
 

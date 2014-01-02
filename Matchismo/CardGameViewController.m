@@ -32,7 +32,7 @@
 @implementation CardGameViewController
 @synthesize cardButtons = _cardButtons;
 @synthesize scoreLabel, resultsOfLastFlip;
-@synthesize flipsLabel, game, playingCardGame, setsCardGame;
+@synthesize flipsLabel, game;
 
 
 
@@ -43,9 +43,9 @@
         [self resetAllButtons:_cardButtons];
         self.resultsOfLastFlip.text = @"Results of last Flip";
         
-        if (self.playingCardGame.isTheCurrentGameAPlayingCardGame) {
+        if (self.game.isTheCurrentGameAPlayingCardGame) {
         
-        self.playingCardGame = nil;
+        self.game = nil;
         } else if (self.setsCardGame.isTheCurrentGameASetCardGame){
         self.setsCardGame = nil;
         }

@@ -25,7 +25,7 @@
 
 @implementation SetCardMatchingGame
 
-@synthesize numberOfSelectedCards, cardsToBeCompared,theNumberOfSelectedCardsIsThree,resultsOFTheEachSetMatch, historyOfTheSetCardGame, isTheCurrentGameASetCardGame, scoreForASetCardGame, flipCountForASetCardGame;
+@synthesize numberOfSelectedCards, cardsToBeCompared,theNumberOfSelectedCardsIsThree,resultsOFTheEachSetMatch, historyOfTheSetCardGame;
 
     
 -(id) initWithCardCount: (NSUInteger)count usingDeck: (Deck *) deck{
@@ -44,7 +44,8 @@
             
         }
     
-    isTheCurrentGameASetCardGame = YES;
+    self.score = 0;
+    self.flipCount = 0;
     cardsToBeCompared =  [[NSMutableArray alloc]init];
     self.numberOfSelectedCards = 0;
    historyOfTheSetCardGame = [[NSMutableArray alloc]init];
@@ -96,13 +97,13 @@
         
         if (matchScore){
             //            theThreeCardsFormASet = YES;
-            self.scoreForASetCardGame += 5;
+            self.score += 5;
             resultsOFTheEachSetMatch = @"The cards form a set";
             
             
         } else {
             //            theThreeCardsFormASet = NO;
-            self.scoreForASetCardGame -= 3;
+            self.score -= 3;
             resultsOFTheEachSetMatch = @"The cards do not form a set";
             
         }
