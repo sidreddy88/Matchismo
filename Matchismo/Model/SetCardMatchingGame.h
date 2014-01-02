@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Siddharth Sukumar. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+#import "Deck.h"
 #import "CardMatchingGame.h"
 #import "Card.h"
 
-@interface SetCardMatchingGame : CardMatchingGame
+@interface SetCardMatchingGame : UIViewController
 
 - (NSString *) printifEachMatchIsASet;
 

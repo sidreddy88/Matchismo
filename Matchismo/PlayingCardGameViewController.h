@@ -5,10 +5,11 @@
 //  Created by Siddharth Sukumar on 12/18/13.
 //  Copyright (c) 2013 Siddharth Sukumar. All rights reserved.
 //
-
+#import <UIKit/UIKit.h>
+#import "Deck.h"
 #import "CardGameViewController.h"
 
-@interface PlayingCardGameViewController : CardGameViewController
+@interface PlayingCardGameViewController : UIViewController
 
 
 
