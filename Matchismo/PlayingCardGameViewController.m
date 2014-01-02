@@ -14,6 +14,8 @@
 
 @interface PlayingCardGameViewController ()
 
+
+
 // I use the following BOOL to keep track of when the Playing Card game is being played. When this game appears on screen, this bool is set to true and is only set to false when the game disappers from the screen.
 
 @property BOOL itIsAPlayingCardGameRightNow;
@@ -29,10 +31,6 @@
     
     return newDeck;
 }
-
-
-
-
 
 
 
@@ -55,6 +53,16 @@
     
     
     
+}
+
+- (void) viewDidLoad {
+    
+    [super viewDidLoad];
+    self.game = [[PlayingCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                         usingDeck:[self createDeck]];
+    
+    NSLog(@"%s - game = %@", __PRETTY_FUNCTION__, self.game);
+    NSLog(@"first card = %@", [self.game.cards firstObject]);
 }
 
 

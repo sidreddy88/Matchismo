@@ -19,7 +19,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (nonatomic, strong) CardMatchingGame *game;
+
 
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -33,25 +33,6 @@
 @synthesize cardButtons = _cardButtons;
 @synthesize scoreLabel, resultsOfLastFlip;
 @synthesize flipsLabel, game, playingCardGame, setsCardGame;
-
-- (PlayingCardMatchingGame *) playingCardGame {
-    
-    
-
-    if (!playingCardGame) playingCardGame = [[PlayingCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                        usingDeck:[self createDeck]];
-    
-    return playingCardGame;
-
-}
-
-
-- (SetCardMatchingGame *) setsCardGame {
-    if (!setsCardGame && self.playingCardGame.isTheCurrentGameAPlayingCardGame == NO) setsCardGame = [[SetCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                                                     usingDeck:[self createDeck]];
-    
-    return setsCardGame;
-}
 
 
 

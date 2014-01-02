@@ -24,7 +24,7 @@
 
 
 
-@property (nonatomic, readonly) CardMatchingGame *game;
+@property (nonatomic, strong) CardMatchingGame *game;
 @property (nonatomic, strong) PlayingCardMatchingGame *playingCardGame;
 @property (nonatomic, strong) SetCardMatchingGame *setsCardGame;
 

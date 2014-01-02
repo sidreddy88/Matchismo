@@ -22,7 +22,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.game = [[SetCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                     usingDeck:[self createDeck]];
 
+    NSLog(@"%s - game = %@", __PRETTY_FUNCTION__, self.game);
+    NSLog(@"first card = %@", [self.game.cards firstObject]);
 }
 
 
@@ -32,6 +36,8 @@
         return newDeck;
 
 }
+
+
 
 - (NSAttributedString * ) gettingTheAttributesThatGoOnASetCard: (Card *)card {
     
@@ -156,6 +162,7 @@
     return mine;
     
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
