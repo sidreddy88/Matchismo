@@ -173,8 +173,10 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
+    [self updateUI];
     self.game = nil;
+    [self updateUI];
+    
     
     
     
@@ -183,8 +185,7 @@
 - (void) viewDidLoad {
     
     [super viewDidLoad];
-//    self.game = [[PlayingCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-//                                                         usingDeck:[self createDeck]];
+
     
     NSLog(@"%s - game = %@", __PRETTY_FUNCTION__, self.game);
     NSLog(@"first card = %@", [self.game.cards firstObject]);

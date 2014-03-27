@@ -291,7 +291,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
 
 
     
@@ -300,7 +300,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
+    [self resetAllButtons:_cardButtons];
     self.game = nil;
+    [self updateUI];
 
     
     
